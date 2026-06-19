@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greater Tree Wayside Missionary Baptist Church</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0c1a3a;
+      --navy2:  #122050;
+      --navy3:  #1a2c6b;
+      --gold:   #c8963e;
+      --gold2:  #e8b84b;
+      --cream:  #f5f0e8;
+      --white:  #ffffff;
+      --muted:  #8a9bbf;
+      --border: rgba(200,150,62,0.25);
+    }
+
+    html, body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      min-height: 100%;
+    }
+
+    /* TICKER */
+    .ticker-wrap {
+      background: var(--gold);
+      color: var(--navy);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 7px 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 32s linear infinite;
+      padding-left: 100%;
+    }
+    .ticker-inner span { margin-right: 80px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+    /* HEADER */
+    .header {
+      background: var(--navy2);
+      border-bottom: 3px solid var(--gold);
+      padding: 20px 20px 16px;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.25em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 700; color: var(--white);
+      line-height: 1.15; margin-bottom: 4px;
+    }
+    .header-sub {
+      font-size: 12px; color: var(--muted); letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .cross-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin: 12px 0 0;
+      color: var(--gold); font-size: 18px; opacity: 0.7;
+    }
+    .cross-line { flex: 1; max-width: 80px; height: 1px; background: var(--border); }
+
+    /* MAIN */
+    .main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .card {
+      background: var(--navy2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* YOUTUBE */
+    .yt-embed {
+      position: relative; width: 100%; padding-bottom: 56.25%; background: #000;
+    }
+    .yt-embed iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+    .yt-caption {
+      padding: 12px 18px;
+      font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .yt-caption a {
+      color: var(--gold); text-decoration: none; font-weight: 600;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .yt-caption a:hover { color: var(--gold2); }
+
+    /* MUSIC PLAYER */
+    .music-player {
+      background: var(--navy2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .mp-now {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .mp-play-btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--gold); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--navy);
+      transition: background 0.15s, transform 0.1s;
+    }
+    .mp-play-btn:hover { background: var(--gold2); transform: scale(1.06); }
+    .mp-play-btn:active { transform: scale(0.97); }
+    .mp-info { flex: 1; min-width: 0; }
+    .mp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; color: var(--white);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      line-height: 1.2; margin-bottom: 2px;
+    }
+    .mp-artist {
+      font-size: 11px; color: var(--gold);
+      letter-spacing: 0.08em; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .mp-controls {
+      display: flex; align-items: center; gap: 4px; flex-shrink: 0;
+    }
+    .mp-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); padding: 6px;
+      transition: color 0.15s;
+    }
+    .mp-btn:hover { color: var(--gold); }
+
+    /* PROGRESS */
+    .mp-progress { padding: 0 18px 6px; }
+    .mp-track {
+      width: 100%; height: 2px; background: rgba(255,255,255,0.1);
+      border-radius: 2px; cursor: pointer; position: relative;
+    }
+    .mp-fill {
+      height: 100%; background: var(--gold); border-radius: 2px;
+      width: 0%; pointer-events: none;
+    }
+    input.mp-scrub {
+      position: absolute; inset: -6px 0;
+      width: 100%; height: 14px; opacity: 0; cursor: pointer; margin: 0;
+    }
+    .mp-times {
+      display: flex; justify-content: space-between;
+      font-size: 9px; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em;
+    }
+
+    /* PLAYLIST */
+    .mp-list { max-height: 220px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .mp-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 18px; border-bottom: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer; transition: background 0.1s;
+    }
+    .mp-item:hover { background: rgba(255,255,255,0.03); }
+    .mp-item.active { background: rgba(200,150,62,0.08); }
+    .mp-item-num {
+      font-size: 10px; color: var(--muted); min-width: 18px;
+      text-align: right; font-variant-numeric: tabular-nums;
+    }
+    .mp-item.active .mp-item-num { color: var(--gold); }
+    .mp-item-info { flex: 1; min-width: 0; }
+    .mp-item-title {
+      font-size: 13px; color: var(--white);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .mp-item.active .mp-item-title { color: var(--gold); font-weight: 600; }
+    .mp-item-artist { font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+    .mp-item-icon { font-size: 8px; color: var(--gold); opacity: 0; }
+    .mp-item.active .mp-item-icon { opacity: 1; }
+    .mp-status {
+      padding: 20px; text-align: center;
+      font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
+    }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .info-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px;
+    }
+    .info-item-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 4px;
+    }
+    .info-item-val {
+      font-size: 14px; font-weight: 600; color: var(--white); line-height: 1.3;
+    }
+    .info-item-val a { color: var(--white); text-decoration: none; }
+    .info-item-val a:hover { color: var(--gold2); }
+
+    /* STORE */
+    .store-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 16px;
+      background: var(--gold); color: var(--navy);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer; border-radius: 3px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .store-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    /* AD BOX */
+    .ad-card {
+      background: linear-gradient(135deg, var(--navy2) 0%, #1a2c6b 100%);
+      border: 1px solid var(--gold); border-radius: 4px;
+      padding: 22px 20px; text-align: center; position: relative; overflow: hidden;
+    }
+    .ad-card::before {
+      content: '✦'; position: absolute; top: -20px; right: -10px;
+      font-size: 80px; color: var(--gold); opacity: 0.05; pointer-events: none;
+    }
+    .ad-badge {
+      display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--navy); background: var(--gold);
+      padding: 3px 10px; border-radius: 2px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .ad-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; color: var(--white); margin-bottom: 10px; line-height: 1.2;
+    }
+    .ad-card p {
+      font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;
+      max-width: 420px; margin-left: auto; margin-right: auto;
+    }
+    .ad-pillars { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+    .ad-pill {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--gold); border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 20px; text-transform: uppercase;
+    }
+    .ad-cta {
+      display: inline-block; padding: 12px 28px;
+      border: 2px solid var(--gold); color: var(--gold);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none; border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ad-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 20px 16px 30px;
+      border-top: 1px solid var(--border);
+      font-size: 10px; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 2;
+    }
+    .footer strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>✦ Sunday School 9AM – 10AM &nbsp;·&nbsp; Service 11AM – 1PM ✦</span>
+    <span>Come as you are and fellowship with us Sundays &nbsp;·&nbsp; 4860 Rohns St, Detroit MI 48214 &nbsp;·&nbsp; 313-571-0633 ✦</span>
+    <span>Sunday School 9AM – 10AM &nbsp;·&nbsp; Service 11AM – 1PM ✦</span>
+    <span>Come as you are and fellowship with us Sundays &nbsp;·&nbsp; 4860 Rohns St, Detroit MI 48214 &nbsp;·&nbsp; 313-571-0633 ✦</span>
+  </div>
+</div>
+
+<div class="header">
+  <div class="header-eyebrow">Missionary Baptist · Est. Detroit, MI</div>
+  <h1>Greater Tree Wayside<br>Missionary Baptist Church</h1>
+  <div class="header-sub">Where Faith Meets Family</div>
+  <div class="cross-divider">
+    <div class="cross-line"></div>✝<div class="cross-line"></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- PAST SERVICES -->
+  <div>
+    <div class="section-label">Past Services</div>
+    <div class="card">
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed?listType=user_uploads&list=WaysideGTOL&index=0"
+          title="Greater Tree Wayside — Past Services"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-caption">
+        <span>Recent messages from the pulpit</span>
+        <a href="https://www.youtube.com/@WaysideGTOL" target="_blank" rel="noopener">View All on YouTube →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUSIC PLAYER -->
+  <div>
+    <div class="section-label">Music &amp; Worship</div>
+    <div class="music-player">
+      <div class="mp-now">
+        <button class="mp-play-btn" id="mp-play-btn" aria-label="Play/Pause">
+          <svg id="mp-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          <svg id="mp-pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <div class="mp-info">
+          <div class="mp-title" id="mp-title">Loading…</div>
+          <div class="mp-artist" id="mp-artist">Worship Music</div>
+        </div>
+        <div class="mp-controls">
+          <button class="mp-btn" id="mp-prev" aria-label="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="2" height="16"/></svg>
+          </button>
+          <button class="mp-btn" id="mp-next" aria-label="Next">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,4 15,12 5,20"/><rect x="17" y="4" width="2" height="16"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="mp-progress">
+        <div class="mp-track" id="mp-track">
+          <div class="mp-fill" id="mp-fill"></div>
+          <input type="range" class="mp-scrub" id="mp-scrub" min="0" max="100" value="0" step="0.1" />
+        </div>
+        <div class="mp-times">
+          <span id="mp-cur">0:00</span>
+          <span id="mp-dur">0:00</span>
+        </div>
+      </div>
+      <div class="mp-list" id="mp-list">
+        <div class="mp-status" id="mp-status">Loading worship music…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOIN US -->
+  <div>
+    <div class="section-label">Join Us</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-item-label">Sunday School</div>
+        <div class="info-item-val">9:00 AM – 10:00 AM</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Morning Service</div>
+        <div class="info-item-val">11:00 AM – 1:00 PM</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Location</div>
+        <div class="info-item-val">
+          <a href="https://maps.google.com/?q=4860+Rohns+St+Detroit+MI+48214" target="_blank">4860 Rohns St<br>Detroit, MI 48214</a>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Phone</div>
+        <div class="info-item-val"><a href="tel:3135710633">313-571-0633</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORE -->
+  <div>
+    <div class="section-label">Church Store</div>
+    <a class="store-btn" href="#store" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Visit the Church Store
+    </a>
+  </div>
+
+  <!-- ADVERTISER BOX -->
+  <div>
+    <div class="section-label">Community Partners</div>
+    <div class="ad-card">
+      <div class="ad-badge">Advertise With Us</div>
+      <h3>Reach the Heart of Detroit's Faith Community</h3>
+      <p>Greater Tree Wayside is more than a church — we're a cornerstone of our neighborhood. Partner with us to put your business in front of families, neighbors, and community members who believe in supporting one another. Faith-driven spending starts here.</p>
+      <div class="ad-pillars">
+        <span class="ad-pill">Mom &amp; Pop Shops</span>
+        <span class="ad-pill">Faith-Based Orgs</span>
+        <span class="ad-pill">Local Services</span>
+        <span class="ad-pill">Community Events</span>
+      </div>
+      <a class="ad-cta" href="mailto:info@greatertreewayside.org?subject=Advertising%20Inquiry">Get In Touch</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong>Greater Tree Wayside Missionary Baptist Church</strong><br>
+  4860 Rohns St · Detroit, MI 48214 · 313-571-0633<br>
+  Come as you are. All are welcome.
+</div>
+
+<audio id="mp-audio" preload="metadata" crossorigin="anonymous"></audio>
+
+<script>
+  const REPO_OWNER = 'fairefaretravels';
+  const REPO_NAME  = 'WS-GTOL';
+  const RAW_BASE   = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/`;
+  const API_URL    = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/`;
+  const AUDIO_EXTS = ['.mp3', '.ogg', '.wav', '.m4a', '.aac'];
+
+  let tracks = [], queue = [], currentIdx = 0, loaded = false;
+
+  const audio     = document.getElementById('mp-audio');
+  const playBtn   = document.getElementById('mp-play-btn');
+  const playIcon  = document.getElementById('mp-play-icon');
+  const pauseIcon = document.getElementById('mp-pause-icon');
+  const prevBtn   = document.getElementById('mp-prev');
+  const nextBtn   = document.getElementById('mp-next');
+  const titleEl   = document.getElementById('mp-title');
+  const artistEl  = document.getElementById('mp-artist');
+  const fillEl    = document.getElementById('mp-fill');
+  const scrubEl   = document.getElementById('mp-scrub');
+  const curEl     = document.getElementById('mp-cur');
+  const durEl     = document.getElementById('mp-dur');
+  const listEl    = document.getElementById('mp-list');
+  const statusEl  = document.getElementById('mp-status');
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function parseName(filename) {
+    const base = filename.replace(/\.[^.]+$/, '');
+    const parts = base.split(' - ');
+    return parts.length >= 2
+      ? { title: parts[0].trim(), artist: parts.slice(1).join(' - ').trim() }
+      : { title: base, artist: 'Greater Tree Wayside' };
+  }
+
+  function fmt(s) {
+    if (!isFinite(s)) return '0:00';
+    return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, '0')}`;
+  }
+
+  function renderList() {
+    listEl.innerHTML = '';
+    queue.forEach((t, i) => {
+      const el = document.createElement('div');
+      el.className = 'mp-item' + (i === currentIdx ? ' active' : '');
+      el.innerHTML = `
+        <span class="mp-item-num">${String(i + 1).padStart(2, '0')}</span>
+        <div class="mp-item-info">
+          <div class="mp-item-title">${t.title}</div>
+          <div class="mp-item-artist">${t.artist}</div>
+        </div>
+        <span class="mp-item-icon">▶</span>
+      `;
+      el.addEventListener('click', () => loadTrack(i, true));
+      listEl.appendChild(el);
+    });
+  }
+
+  function updateActive() {
+    listEl.querySelectorAll('.mp-item').forEach((el, i) => el.classList.toggle('active', i === currentIdx));
+    const active = listEl.querySelector('.mp-item.active');
+    if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function loadTrack(idx, autoplay = true) {
+    currentIdx = idx;
+    const t = queue[idx];
+    audio.src = t.url;
+    titleEl.textContent  = t.title;
+    artistEl.textContent = t.artist;
+    fillEl.style.width = '0%';
+    scrubEl.value = 0;
+    curEl.textContent = '0:00';
+    durEl.textContent = '0:00';
+    updateActive();
+    if (autoplay) audio.play().catch(() => {});
+    else audio.load();
+  }
+
+  function setPlaying(yes) {
+    playIcon.style.display  = yes ? 'none' : '';
+    pauseIcon.style.display = yes ? '' : 'none';
+  }
+
+  audio.addEventListener('play',  () => setPlaying(true));
+  audio.addEventListener('pause', () => setPlaying(false));
+  audio.addEventListener('ended', () => loadTrack((currentIdx + 1) % queue.length, true));
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    fillEl.style.width = pct + '%';
+    scrubEl.value = pct;
+    curEl.textContent = fmt(audio.currentTime);
+  });
+  audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
+  scrubEl.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (scrubEl.value / 100) * audio.duration;
+  });
+
+  playBtn.addEventListener('click', () => {
+    if (!loaded) return;
+    audio.paused ? audio.play().catch(() => {}) : audio.pause();
+  });
+  prevBtn.addEventListener('click', () => {
+    if (!loaded) return;
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    loadTrack((currentIdx - 1 + queue.length) % queue.length, true);
+  });
+  nextBtn.addEventListener('click', () => {
+    if (!loaded) return;
+    loadTrack((currentIdx + 1) % queue.length, true);
+  });
+
+  async function loadPlaylist() {
+    try {
+      const res = await fetch(API_URL, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+      const files = await res.json();
+      tracks = files
+        .filter(f => f.type === 'file' && AUDIO_EXTS.some(e => f.name.toLowerCase().endsWith(e)))
+        .map(f => ({ ...parseName(f.name), url: RAW_BASE + encodeURIComponent(f.name) }));
+      if (!tracks.length) { statusEl.textContent = 'No music files found in repo.'; return; }
+      queue = shuffle([...tracks]);
+      if (statusEl.parentNode) statusEl.remove();
+      renderList();
+      loadTrack(0, false);
+      loaded = true;
+    } catch (err) {
+      statusEl.textContent = `Could not load music: ${err.message}`;
+    }
+  }
+
+  loadPlaylist();
+</script>
+</body>
+</html>
